@@ -4,9 +4,12 @@ const express = require('express');
 const session = require('express-session');
 require('dotenv').config();
 
-// Módulos locales
+// ======================================
+// IMPORTACIÓN DE MÓDULOS LOCALES
+// ======================================
 const db = require('./config/db'); // Se importa para ejecutar la prueba de conexión a MySQL
-const authRoutes = require('./routes/authRoutes'); // Rutas para /auth/login, /auth/register
+const authRoutes = require('./routes/authRoutes'); // Rutas para /auth
+const maquinariaRoutes = require('./routes/maquinariaRoutes'); // <--- AÑADIDO: Rutas para /api/maquinaria
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -31,7 +34,7 @@ app.use(session({
 }));
 
 // ======================================
-// RUTAS
+// ENRUTAMIENTO (Rutas de la Aplicación)
 // ======================================
 
 // 1. Ruta de prueba (Endpoint simple)
@@ -40,9 +43,10 @@ app.get('/', (req, res) => {
 });
 
 // 2. Rutas de Autenticación (Login, Registro, Logout)
-// Estas rutas se manejan bajo el prefijo /auth
-// Criterio: Implementa sesiones, protección de rutas, hash seguro.
 app.use('/auth', authRoutes); 
+
+// 3. Rutas de Maquinaria (Entidad Operacional 1) <--- INTEGRACIÓN DEL CRUD DE MAQUINARIA
+app.use('/api/maquinaria', maquinariaRoutes);
 
 
 // ======================================
