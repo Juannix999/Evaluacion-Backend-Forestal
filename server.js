@@ -9,7 +9,8 @@ require('dotenv').config();
 // ======================================
 const db = require('./config/db'); // Se importa para ejecutar la prueba de conexión a MySQL
 const authRoutes = require('./routes/authRoutes'); // Rutas para /auth
-const maquinariaRoutes = require('./routes/maquinariaRoutes'); // <--- AÑADIDO: Rutas para /api/maquinaria
+const maquinariaRoutes = require('./routes/maquinariaRoutes'); // Rutas para /api/maquinaria
+const mantencionRoutes = require('./routes/mantencionRoutes'); // Rutas para /api/mantenciones
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -39,14 +40,17 @@ app.use(session({
 
 // 1. Ruta de prueba (Endpoint simple)
 app.get('/', (req, res) => {
-    res.send('Servidor Backend Forestal Funcionando. Listo para implementar rutas.');
+    res.send('Servidor Backend Forestal Funcionando. Proyecto Finalizado (4 Commits).');
 });
 
 // 2. Rutas de Autenticación (Login, Registro, Logout)
 app.use('/auth', authRoutes); 
 
-// 3. Rutas de Maquinaria (Entidad Operacional 1) <--- INTEGRACIÓN DEL CRUD DE MAQUINARIA
-app.use('/api/maquinaria', maquinariaRoutes);
+// 3. Rutas de Maquinaria (Entidad Operacional 1)
+app.use('/api/maquinaria', maquinariaRoutes); 
+
+// 4. Rutas de Mantenciones (Entidad Operacional 2)
+app.use('/api/mantenciones', mantencionRoutes);
 
 
 // ======================================
