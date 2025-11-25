@@ -8,53 +8,42 @@ El sistema implementa una API RESTful para la gestión de activos (Maquinaria) y
 
 El proyecto fue desarrollado utilizando una arquitectura modular, separando controladores, rutas y configuración, como se evidencia en la estructura de directorios.
 
-Componente
+Componentes y Tecnologías Clave del Proyecto
 
-Tecnología
+1. Backend
+Tecnología: Node.js con Express
 
-Propósito
+Propósito: Funcionar como el servidor de aplicación principal y proporcionar una API RESTful para la comunicación con el frontend.
 
-Criterio Cumplido
+Criterio Cumplido: Arquitectura Ordenada.
 
-Backend
+2. Base de Datos (BD)
+Tecnología: MySQL (ejecutándose en un Servidor Docker).
 
-Node.js con Express
+Propósito: Garantizar la persistencia de datos industriales.
 
-Servidor de aplicación y API RESTful.
+Criterio Cumplido: Conexión a BD Industrial.
 
-Arquitectura Ordenada
+3. Seguridad (Contraseñas)
+Tecnología: bcrypt
 
-Base de Datos
+Propósito: Realizar el Hashing seguro de las contraseñas de los usuarios.
 
-MySQL (Servidor Docker)
+Criterio Cumplido: Contraseñas con Hash.
 
-Persistencia de datos industriales.
+4. Sesiones y Estado
+Tecnología: express-session
 
-Conexión a BD Industrial
+Propósito: Manejar el estado de la sesión del usuario (como el proceso de Login y Logout).
 
-Seguridad
+Criterio Cumplido: Implementa Sesiones.
 
-bcrypt
+5. Configuración y Credenciales
+Tecnología: dotenv
 
-Hashing seguro de contraseñas.
+Propósito: Permitir el uso de variables de entorno para almacenar credenciales y configuraciones sensibles.
 
-Contraseñas con Hash
-
-Sesiones
-
-express-session
-
-Manejo de estado de usuario (Login/Logout).
-
-Implementa Sesiones
-
-Configuración
-
-dotenv
-
-Uso de variables de entorno para credenciales.
-
-Buenas Prácticas de Seguridad
+Criterio Cumplido: Buenas Prácticas de Seguridad.
 
 📊 2. Modelo de Datos (Esquema MySQL)
 
@@ -141,54 +130,49 @@ node server.js
 El servidor Express se iniciará en http://localhost:3000.
 
 C. Endpoints Importantes (Ejemplos)
+Estos son los puntos de acceso de tu API, detallando el método, la descripción de su acción y el requisito que satisfacen:
 
-Endpoint
+Endpoints de Autenticación y Seguridad
+Endpoint: /auth/register
 
-Método
+Método: POST
 
-Descripción
+Descripción: Crea un nuevo usuario (rol: 'administrador' u 'operario').
 
-Requisito
+Requisito: Seguridad.
 
-/auth/register
+Endpoint: /auth/login
 
-POST
+Método: POST
 
-Crea un nuevo usuario (rol: 'administrador' o 'operario').
+Descripción: Inicia la sesión.
 
-Seguridad
+Requisito: Sesiones.
 
-/auth/login
+Endpoint: /auth/protected
 
-POST
+Método: GET
 
-Inicia la sesión.
+Descripción: Prueba si la sesión está activa.
 
-Sesiones
+Requisito: Protección de Rutas.
 
-/api/maquinaria
+Endpoints de Gestión de Datos
+Endpoint: /api/maquinaria
 
-POST
+Método: POST
 
-Registra nueva maquinaria.
+Descripción: Registra nueva maquinaria.
 
-CRUD (Maquinaria)
+Requisito: CRUD (Maquinaria).
 
-/api/mantenciones
+Endpoint: /api/mantenciones
 
-GET
+Método: GET
 
-Lista todos los registros de mantención.
+Descripción: Lista todos los registros de mantención.
 
-CRUD (Mantenciones)
-
-/auth/protected
-
-GET
-
-Prueba si la sesión está activa.
-
-Protección de Rutas
+Requisito: CRUD (Mantenciones).
 
 📜 5. Log de Commits (4 Mínimos)
 
